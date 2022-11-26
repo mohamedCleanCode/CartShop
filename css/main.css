@@ -1,0 +1,153 @@
+/* Start Global Rules  */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+:root {
+  --danger-color: #f56a6a;
+  --gray-color: #7f888f;
+  --main-transition: 0.3s;
+  --padding-top: 100px;
+  --padding-bootom: 100px;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  transition: var(--main-transition);
+  color: black;
+}
+a:hover {
+  color: #f0dbdb;
+}
+.scroll-up {
+  position: fixed;
+  bottom: 35px;
+  right: 40px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: var(--main-color);
+  z-index: 1000;
+  display: none;
+  transition: 1s;
+}
+.scroll-up:hover {
+  background-color: var(--main-color-alt);
+}
+.scroll-up .up {
+  color: white;
+}
+:focus {
+  outline: none;
+}
+/* End Global Rules  */
+
+/* Start Header  */
+header {
+  background-color: #dba39a;
+  height: 75px;
+}
+header .container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .logo {
+  width: 160px;
+}
+header .logo svg {
+  color: gold;
+  font-size: 30px;
+  margin-right: 8px;
+}
+header .logo a {
+  font-size: 20px;
+}
+header .logo a:hover {
+  color: #f0dbdb;
+}
+header .logo a span {
+  font-weight: bold;
+  font-size: 25px;
+}
+header ul.links {
+  width: 150px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+header ul.links a {
+  padding-bottom: 5px;
+  font-size: 18px;
+}
+header ul.links a:hover {
+  color: #f0dbdb;
+  border-bottom: 1px solid #f0dbdb;
+}
+header .user-info {
+  width: 200px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+}
+/* End Header  */
+
+/* Start Sign Page  */
+#sign-form {
+  width: 500px;
+  margin: 100px auto;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  #sign-form {
+    width: 350px;
+  }
+}
+#sign-form h1 {
+  margin-bottom: 20px;
+}
+#sign-form form input {
+  display: block;
+  width: 50%;
+  margin: auto;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 1px solid #dba39a;
+}
+@media (max-width: 767px) {
+  #sign-form form input:not(:last-child) {
+    font-size: 10px;
+  }
+}
+#signform form input::placeholder {
+  transition: 0.5s;
+}
+#sign-form form input:focus::placeholder {
+  color: transparent;
+}
+#sign-form form #sign-up-btn {
+  border: none;
+  text-transform: uppercase;
+  background-color: #dba39a;
+  color: #f0dbdb;
+  font-size: 25px;
+  transition: 0.3s;
+}
+#sign-form form #sign-up-btn:hover {
+  transform: scale(1.1);
+}
+/* End Sign Page  */
