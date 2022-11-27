@@ -98,10 +98,39 @@ header ul.links a:hover {
   border-bottom: 1px solid #f0dbdb;
 }
 header .user-info {
-  width: 200px;
+  width: 250px;
   display: none;
   justify-content: space-between;
   align-items: center;
+}
+.main-container {
+  position: relative;
+}
+.main-container .count {
+  position: absolute;
+  background-color: #f0dbdb;
+  width: 20px;
+  height: 20px;
+  display: block;
+  border-radius: 50%;
+  top: -10px;
+  right: 0px;
+  text-align: center;
+}
+.main-container .cart-badge {
+  font-size: 22px;
+  cursor: pointer;
+}
+.main-container .cart-container {
+  position: absolute;
+  right: -120px;
+  top: 50px;
+  width: 250px;
+  min-height: 100vh;
+  background-color: white;
+  z-index: 10000;
+  text-align: center;
+  transition: var(--main-transition);
 }
 /* End Header  */
 

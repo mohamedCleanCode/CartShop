@@ -53,7 +53,9 @@ fetch("https://fakestoreapi.com/products")
                         <p class="product-price">${item.price}</p>
                     </div>
                     <div class="product-actions">
-                        <button class="product-add-to-cart">Add to cart</button>
+                        <button class="product-add-to-cart" onclick="addProductToCart(${
+                          item.id
+                        })">Add to cart</button>
                         <button class="favorite"><i class="fa-regular fa-heart"></i></button>
                     </div>
       `;
@@ -62,3 +64,14 @@ fetch("https://fakestoreapi.com/products")
       products.innerHTML += el;
     });
   });
+
+function checkLogedInUser() {
+  if (localStorage.getItem("username")) {
+    console.log("true");
+  } else {
+    window.location.href = "login.html";
+  }
+}
+function addProductToCart(id) {
+  console.log(id);
+}
