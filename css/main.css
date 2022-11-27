@@ -151,3 +151,65 @@ header .user-info {
   transform: scale(1.1);
 }
 /* End Sign Page  */
+
+/* Start Content  */
+.content {
+  padding-top: 50px;
+  padding-bottom: var(--padding-bottom);
+}
+.product {
+  /* border: 1px solid #ddd; */
+  border-radius: 8px;
+  padding: 10px 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: var(--main-transition);
+  height: 400px;
+  margin-bottom: 20px;
+}
+.product:hover {
+  box-shadow: rgba(149, 157, 165, 0.788) 0px 8px 24px;
+  transform: translateY(-5px);
+}
+.product:hover .product-img {
+  transform: rotate(6deg);
+}
+.product-img {
+  width: 200px;
+  height: 200px;
+  transition: var(--main-transition);
+  border-radius: 6px;
+}
+.product-info {
+  margin-top: 15px;
+}
+.product-heading {
+  font-size: 18px;
+}
+.product-desc {
+  font-size: 14px;
+}
+.product-info,
+.product-actions {
+  padding-left: 20px;
+}
+.product-add-to-cart {
+  border: none;
+  padding: 10px;
+  color: white;
+  background-color: var(--danger-color);
+  border-radius: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: var(--main-transition);
+}
+.product-add-to-cart:hover {
+  transform: scale(1.1);
+}
+.favorite {
+  border: none;
+  background-color: transparent;
+}
+.favorite svg {
+  font-size: 20px;
+}
+/* End Content  */
