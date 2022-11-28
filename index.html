@@ -30,22 +30,32 @@
                         <a href="login.html">Sign In</a>
                     </li>
                 </ul>
-                <ul class="user-info">
+                <ul class="user-info" style="position: relative;">
                     <li>
                         <i class="fa-solid fa-user"></i>
                         <a href="#" class="user-account">hi</a>
                     </li>
                     <li class="main-container">
-                        <span class="count">1</span>
+                        <span class="count"></span>
                         <i style="margin: 0 10px;" class="cart-badge fa-solid fa-dumpster"></i>
-                        <div class="cart-container">
-                            <p style="padding: 10px;">Your cart</>
-                        </div>
                     </li>
                     <li>
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <a href="#" id="log-out">Log Out</a>
                     </li>
+                    <!-- Cart  -->
+                    <div class="cart-container">
+                        <i class="fa-solid fa-x close-cart"></i>
+                        <p class="your-cart">Your Cart</p>
+                        <div class="all-products-cart">
+                        </div>
+                        <!-- Total -->
+                        <hr>
+                        <div class="cart-total">
+                            <p class="total">Total <span class="total-price"></span></p>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
                 </ul>
             </nav>
         </div>
@@ -62,7 +72,6 @@
     <!-- End Products -->
 
     <!-- JS Files -->
-    <script src="js/all.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/main.js"></script>
