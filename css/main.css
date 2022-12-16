@@ -75,9 +75,41 @@ header ul.links {
   justify-content: space-evenly;
   align-items: center;
 }
-.main-container .cart-badge {
-  font-size: 22px;
+.cart-badge {
+  position: relative;
+}
+.cart-badge i {
+  font-size: 30px;
   cursor: pointer;
+  transition: var(--main-transition);
+}
+.cart-badge i:hover {
+  transform: scale(1.1);
+}
+.cart-badge span {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  top: -20px;
+  right: -20px;
+}
+.cart {
+  position: fixed;
+  background-color: white;
+  width: 250px;
+  min-height: 100vh;
+  right: 0;
+  top: 75px;
+  transition: var(--main-transition);
+}
+.cart.open {
+  width: 250px;
 }
 /* End Header  */
 
