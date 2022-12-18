@@ -2,9 +2,23 @@
 let productsContainer = document.querySelector(".products");
 let cartBadge = document.querySelector(".cart-badge");
 let cart = document.querySelector(".cart");
+let closeCart = document.querySelector(".close-cart");
 
+// Open cart
 cartBadge.addEventListener("click", () => {
   cart.classList.toggle("open");
+});
+
+// Close cart
+closeCart.addEventListener("click", () => {
+  cart.classList.toggle("open");
+});
+
+// Remove item from cart
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-item")) {
+    e.target.parentElement.remove();
+  }
 });
 
 // Api
