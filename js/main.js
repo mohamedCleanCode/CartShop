@@ -1,5 +1,13 @@
+// Main varibles
 let productsContainer = document.querySelector(".products");
-let listOfitems = [];
+let cartBadge = document.querySelector(".cart-badge");
+let cart = document.querySelector(".cart");
+
+cartBadge.addEventListener("click", () => {
+  cart.classList.toggle("open");
+});
+
+// Api
 fetch("https://fakestoreapi.com/products")
   .then((res) => res.json())
   .then((data) => {

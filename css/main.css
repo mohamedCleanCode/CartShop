@@ -88,8 +88,8 @@ header ul.links {
 }
 .cart-badge span {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   background-color: red;
   border-radius: 50%;
   color: white;
@@ -98,11 +98,14 @@ header ul.links {
   text-align: center;
   top: -20px;
   right: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .cart {
   position: fixed;
   background-color: white;
-  width: 250px;
+  width: 0px;
   min-height: 100vh;
   right: 0;
   top: 75px;
@@ -110,6 +113,77 @@ header ul.links {
 }
 .cart.open {
   width: 250px;
+}
+.cart .cart-title {
+  width: 70%;
+  margin: 20px auto 0;
+}
+.cart-content {
+  padding: 20px;
+  width: 100%;
+}
+.cart-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart-box .cart-box-img {
+  width: 70px;
+  height: 70px;
+}
+.cart-box .cart-details {
+  width: 100px;
+}
+.cart-box .cart-details .name-item {
+  font-size: 15px;
+  margin: 0;
+}
+.cart-box .cart-details .price-item {
+  color: #8bc34a;
+  font-weight: bold;
+  margin: 10px 0 0;
+}
+.cart-box .cart-details .quantity-item {
+  width: 40px;
+  text-align: center;
+}
+.cart-box .remove-item {
+  color: red;
+  font-size: 15px;
+  cursor: pointer;
+}
+.total-cart {
+  padding-right: 20px;
+  margin-bottom: 15px;
+  text-align: right;
+}
+.total-cart .total-title {
+  margin-right: 5px;
+  font-weight: bold;
+}
+.total-cart .total-price {
+  color: red;
+}
+.btn-buy {
+  width: 70%;
+  border: none;
+  margin: 0 35px;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  background-color: red;
+  transition: var(--main-transition);
+}
+.btn-buy:hover {
+  transform: scale(1.1);
+}
+.close-cart {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 25px;
+  cursor: pointer;
 }
 /* End Header  */
 
