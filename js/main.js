@@ -3,6 +3,8 @@ let productsContainer = document.querySelector(".products");
 let cartBadge = document.querySelector(".cart-badge");
 let cart = document.querySelector(".cart");
 let closeCart = document.querySelector(".close-cart");
+let cartContent = document.querySelector(".cart-content");
+let totalPrice = document.querySelector(".total-price");
 
 // Open cart
 cartBadge.addEventListener("click", () => {
@@ -14,12 +16,30 @@ closeCart.addEventListener("click", () => {
   cart.classList.toggle("open");
 });
 
+// Add item to cart
+function addToCart() {
+  console.log(true);
+}
 // Remove item from cart
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("remove-item")) {
     e.target.parentElement.remove();
+    updateTotalPrice();
   }
 });
+
+// Update total price
+function updateTotalPrice() {
+  let cartBoxs = cartContent.querySelectorAll(".cart-box");
+  let total;
+  for (let i = 0; i < cartBoxs.length; i++) {
+    let cartBox = cartBoxs[i];
+    let price = cartBox.querySelector(".price-item").innerHTML.slice(1);
+    let quantity = cartBox.querySelector(".quantity-item").value;
+    total += +price * +quantity;
+    totalPrice.innerHTML = `$${total}`;
+  }
+}
 
 // Api
 fetch("https://fakestoreapi.com/products")
@@ -49,6 +69,7 @@ fetch("https://fakestoreapi.com/products")
       let button = document.createElement("button");
       button.className = "item-add-to-cart";
       button.innerHTML = "Add To Cart";
+      button.setAttribute("onclick", "addToCart()");
       mainDiv.appendChild(img);
       mainDiv.appendChild(DivInfo);
       mainDiv.appendChild(button);
