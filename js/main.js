@@ -6,6 +6,7 @@ let closeCart = document.querySelector(".close-cart");
 let cartContent = document.querySelector(".cart-content");
 let totalPrice = document.querySelector(".total-price");
 let counter = document.querySelector(".counter");
+let ids = [];
 
 // Api
 fetch("https://fakestoreapi.com/products")
@@ -67,18 +68,23 @@ function addItemToCart(id) {
   fetch(`https://fakestoreapi.com/products/${id}`)
     .then((res) => res.json())
     .then((data) => {
-      cartContent.innerHTML += `
-                  <div class="cart-box">
-                    <img src="${data.image}" alt="" class="cart-box-img">
-                    <div class="cart-details">
-                        <h2 class="name-item">${data.title}</h2>
-                        <p class="price-item">$${data.price}</p>
-                        <input type="number" value="1" class="quantity-item">
+      if (ids.includes(id)) {
+        alert("item is exist");
+      } else {
+        ids.push(id);
+        cartContent.innerHTML += `
+                    <div class="cart-box pro-${id}">
+                      <img src="${data.image}" alt="" class="cart-box-img">
+                      <div class="cart-details">
+                          <h2 class="name-item">${data.title}</h2>
+                          <p class="price-item">$${data.price}</p>
+                          <input type="number" value="1" class="quantity-item">
+                      </div>
+                      <i class="fa-solid fa-trash remove-item"></i>
                     </div>
-                    <i class="fa-solid fa-trash remove-item"></i>
-                  </div>
-                `;
-      updateTotalPrice();
+                  `;
+        updateTotalPrice();
+      }
     });
 }
 
