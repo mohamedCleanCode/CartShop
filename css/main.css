@@ -106,10 +106,10 @@ header ul.links {
   position: fixed;
   background-color: white;
   width: 250px;
-  min-height: 100vh;
   right: -100%;
   top: 75px;
   transition: 1s;
+  overflow: scroll;
 }
 .cart.open {
   right: 0px;
