@@ -5,7 +5,7 @@ let cart = document.querySelector(".cart");
 let closeCart = document.querySelector(".close-cart");
 let cartContent = document.querySelector(".cart-content");
 let totalPrice = document.querySelector(".total-price");
-let arr = [];
+let counter = document.querySelector(".counter");
 
 // Api
 fetch("https://fakestoreapi.com/products")
@@ -36,7 +36,7 @@ fetch("https://fakestoreapi.com/products")
       button.className = "item-add-to-cart";
       button.innerHTML = "Add To Cart";
       let id = item.id;
-      button.setAttribute("onclick", `addToLocalStorage(${id})`);
+      button.setAttribute("onclick", `addItemToCart(${id})`);
       mainDiv.appendChild(img);
       mainDiv.appendChild(DivInfo);
       mainDiv.appendChild(button);
@@ -62,66 +62,76 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Add item to localstorage
-function addToLocalStorage(id) {
+// Add item to cart
+function addItemToCart(id) {
   fetch(`https://fakestoreapi.com/products/${id}`)
     .then((res) => res.json())
     .then((data) => {
-      arr.push(data);
-      str = JSON.stringify(arr);
-      localStorage.setItem("products", str);
+      cartContent.innerHTML += `
+                  <div class="cart-box">
+                    <img src="${data.image}" alt="" class="cart-box-img">
+                    <div class="cart-details">
+                        <h2 class="name-item">${data.title}</h2>
+                        <p class="price-item">$${data.price}</p>
+                        <input type="number" value="1" class="quantity-item">
+                    </div>
+                    <i class="fa-solid fa-trash remove-item"></i>
+                  </div>
+                `;
+      updateTotalPrice();
     });
-  addItemFromLocalStorage();
-}
-
-// Add item to cart from local storage
-function addItemFromLocalStorage() {
-  if (localStorage.getItem("products")) {
-    let data = JSON.parse(localStorage.getItem("products"));
-    for (let i = 0; i < data.length; i++) {
-      if (i !== data.length - 1) {
-        if (data[i].id === data[i + 1].id) {
-          continue;
-        } else {
-          cartContent.innerHTML += `
-            <div class="cart-box">
-              <img src="${data[i].image}" alt="" class="cart-box-img">
-              <div class="cart-details">
-                  <h2 class="name-item">${data[i].title}</h2>
-                  <p class="price-item">$${data[i].price}</p>
-                  <input type="number" value="1" class="quantity-item">
-              </div>
-              <i class="fa-solid fa-trash remove-item"></i>
-            </div>
-          `;
-        }
-      } else {
-        cartContent.innerHTML += `
-            <div class="cart-box">
-              <img src="${data[i].image}" alt="" class="cart-box-img">
-              <div class="cart-details">
-                  <h2 class="name-item">${data[i].title}</h2>
-                  <p class="price-item">$${data[i].price}</p>
-                  <input type="number" value="1" class="quantity-item">
-              </div>
-              <i class="fa-solid fa-trash remove-item"></i>
-            </div>
-          `;
-        break;
-      }
-    }
-  }
 }
 
 // Update total price
 function updateTotalPrice() {
   let cartBoxs = cartContent.querySelectorAll(".cart-box");
   let total = 0;
+  counter.innerHTML = cartBoxs.length;
   for (let i = 0; i < cartBoxs.length; i++) {
     let cartBox = cartBoxs[i];
     let price = cartBox.querySelector(".price-item").innerHTML.slice(1);
     let quantity = cartBox.querySelector(".quantity-item").value;
     total += +price * +quantity;
-    totalPrice.innerHTML = `$${total}`;
   }
+  totalPrice.innerHTML = `$${total.toFixed(2)}`;
 }
+
+// Add item to cart from local storage
+// function addItemFromLocalStorage() {
+//   cartContent.innerHTML = "";
+//   if (localStorage.getItem("products")) {
+//     let data = JSON.parse(localStorage.getItem("products"));
+//     for (let i = 0; i < data.length; i++) {
+//       if (i !== data.length - 1) {
+//         if (data[i].id === data[i + 1].id) {
+//           continue;
+//         } else {
+//           cartContent.innerHTML += `
+//             <div class="cart-box">
+//               <img src="${data[i].image}" alt="" class="cart-box-img">
+//               <div class="cart-details">
+//                   <h2 class="name-item">${data[i].title}</h2>
+//                   <p class="price-item">$${data[i].price}</p>
+//                   <input type="number" value="1" class="quantity-item">
+//               </div>
+//               <i class="fa-solid fa-trash remove-item"></i>
+//             </div>
+//           `;
+//         }
+//       } else {
+//         cartContent.innerHTML += `
+//             <div class="cart-box">
+//               <img src="${data[i].image}" alt="" class="cart-box-img">
+//               <div class="cart-details">
+//                   <h2 class="name-item">${data[i].title}</h2>
+//                   <p class="price-item">$${data[i].price}</p>
+//                   <input type="number" value="1" class="quantity-item">
+//               </div>
+//               <i class="fa-solid fa-trash remove-item"></i>
+//             </div>
+//           `;
+//         break;
+//       }
+//     }
+//   }
+// }
