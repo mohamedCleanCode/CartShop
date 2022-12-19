@@ -59,6 +59,12 @@ closeCart.addEventListener("click", () => {
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("remove-item")) {
     e.target.parentElement.remove();
+    let index = +e.target.parentElement.classList[1];
+    ids = [
+      ...ids.slice(0, ids.splice(ids.indexOf(index), 1)),
+      ...ids.slice(ids.splice(ids.indexOf(index), 1)),
+    ];
+    console.log(ids);
     updateTotalPrice();
   }
 });
@@ -73,7 +79,7 @@ function addItemToCart(id) {
       } else {
         ids.push(id);
         cartContent.innerHTML += `
-                    <div class="cart-box pro-${id}">
+                    <div class="cart-box ${id}">
                       <img src="${data.image}" alt="" class="cart-box-img">
                       <div class="cart-details">
                           <h2 class="name-item">${data.title}</h2>
@@ -102,42 +108,14 @@ function updateTotalPrice() {
   totalPrice.innerHTML = `$${total.toFixed(2)}`;
 }
 
-// Add item to cart from local storage
-// function addItemFromLocalStorage() {
-//   cartContent.innerHTML = "";
-//   if (localStorage.getItem("products")) {
-//     let data = JSON.parse(localStorage.getItem("products"));
-//     for (let i = 0; i < data.length; i++) {
-//       if (i !== data.length - 1) {
-//         if (data[i].id === data[i + 1].id) {
-//           continue;
-//         } else {
-//           cartContent.innerHTML += `
-//             <div class="cart-box">
-//               <img src="${data[i].image}" alt="" class="cart-box-img">
-//               <div class="cart-details">
-//                   <h2 class="name-item">${data[i].title}</h2>
-//                   <p class="price-item">$${data[i].price}</p>
-//                   <input type="number" value="1" class="quantity-item">
-//               </div>
-//               <i class="fa-solid fa-trash remove-item"></i>
-//             </div>
-//           `;
-//         }
-//       } else {
-//         cartContent.innerHTML += `
-//             <div class="cart-box">
-//               <img src="${data[i].image}" alt="" class="cart-box-img">
-//               <div class="cart-details">
-//                   <h2 class="name-item">${data[i].title}</h2>
-//                   <p class="price-item">$${data[i].price}</p>
-//                   <input type="number" value="1" class="quantity-item">
-//               </div>
-//               <i class="fa-solid fa-trash remove-item"></i>
-//             </div>
-//           `;
-//         break;
-//       }
-//     }
-//   }
-// }
+// Handel input feiled
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("quantity-item")) {
+    let allInputs = document.querySelectorAll(".quantity-item");
+    allInputs.forEach((input) => {
+      input.addEventListener("input", (e) => {
+        updateTotalPrice();
+      });
+    });
+  }
+});
