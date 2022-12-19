@@ -109,7 +109,8 @@ header ul.links {
   right: -100%;
   top: 75px;
   transition: 1s;
-  overflow: scroll;
+  overflow: auto;
+  height: 88%;
 }
 .cart.open {
   right: 0px;

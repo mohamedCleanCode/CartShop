@@ -36,7 +36,7 @@ fetch("https://fakestoreapi.com/products")
       button.className = "item-add-to-cart";
       button.innerHTML = "Add To Cart";
       let id = item.id;
-      button.setAttribute("onclick", `addToCart(${id})`);
+      button.setAttribute("onclick", `addToLocalStorage(${id})`);
       mainDiv.appendChild(img);
       mainDiv.appendChild(DivInfo);
       mainDiv.appendChild(button);
@@ -58,11 +58,12 @@ closeCart.addEventListener("click", () => {
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("remove-item")) {
     e.target.parentElement.remove();
+    updateTotalPrice();
   }
 });
 
-// Add item to cart
-function addToCart(id) {
+// Add item to localstorage
+function addToLocalStorage(id) {
   fetch(`https://fakestoreapi.com/products/${id}`)
     .then((res) => res.json())
     .then((data) => {
@@ -113,14 +114,14 @@ function addItemFromLocalStorage() {
 }
 
 // Update total price
-// function updateTotalPrice() {
-//   let cartBoxs = cartContent.querySelectorAll(".cart-box");
-//   let total;
-//   for (let i = 0; i < cartBoxs.length; i++) {
-//     let cartBox = cartBoxs[i];
-//     let price = cartBox.querySelector(".price-item").innerHTML.slice(1);
-//     let quantity = cartBox.querySelector(".quantity-item").value;
-//     total += +price * +quantity;
-//     totalPrice.innerHTML = `$${total}`;
-//   }
-// }
+function updateTotalPrice() {
+  let cartBoxs = cartContent.querySelectorAll(".cart-box");
+  let total = 0;
+  for (let i = 0; i < cartBoxs.length; i++) {
+    let cartBox = cartBoxs[i];
+    let price = cartBox.querySelector(".price-item").innerHTML.slice(1);
+    let quantity = cartBox.querySelector(".quantity-item").value;
+    total += +price * +quantity;
+    totalPrice.innerHTML = `$${total}`;
+  }
+}
